@@ -1,10 +1,9 @@
-import { Button } from './components';
+import Auth from './components/Auth';
 
 function App() {
   return (
     <div className="wrapper">
-      <h1>Hello, World!</h1>
-      <Button className="qwe" type='primary' block>This is button</Button>
+      <Auth/>
     </div>
   );
 }
