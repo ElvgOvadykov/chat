@@ -1,9 +1,12 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
+import { useHistory } from "react-router-dom";
 
 import './Auth.scss';
 
 const Auth = () => {
+    const history = useHistory();
+
     return (
         <div className='auth'>
             <h2>Войти в аккаунт</h2>
@@ -40,7 +43,7 @@ const Auth = () => {
                         </Button>
                     </Form.Item>
                     <Form.Item style={{marginBottom: 0}}>
-                        <Button type="link">
+                        <Button type="link" onClick={() => history.push("/sign-up")}>
                             Зарегистрироваться
                         </Button>
                     </Form.Item>
