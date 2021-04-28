@@ -35,14 +35,18 @@ const SignUp = () => {
                         <Input size="large" placeholder="Введите фамилию" />
                     </Form.Item>
                     <Form.Item
-                        name="username"
+                        name="email"
                         rules={[
                             {
                                 required: true,
-                                message: 'Пожалуйста введите логин!',
+                                message: 'Пожалуйста введите почту!',
+                            },
+                            {
+                                type: 'email',
+                                message: 'Недействительный адрес электронной почты!',
                             },
                         ]}>
-                        <Input size="large" placeholder="Введите логин" />
+                        <Input size="large" placeholder="Введите почту" />
                     </Form.Item>
                     <Form.Item
                         name="password"

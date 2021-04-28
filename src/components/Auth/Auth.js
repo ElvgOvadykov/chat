@@ -14,14 +14,14 @@ const Auth = () => {
             <div className="auth__form">
                 <Form>
                     <Form.Item
-                        name="username"
+                        name="email"
                         rules={[
                             {
                                 required: true,
-                                message: 'Пожалуйста введите логин!',
+                                message: 'Пожалуйста введите почту!',
                             },
                         ]}>
-                        <Input size="large" placeholder="Введите логин" />
+                        <Input size="large" placeholder="Введите почту" />
                     </Form.Item>
                     <Form.Item
                         name="password"
@@ -31,7 +31,7 @@ const Auth = () => {
                                 message: 'Пожалуйста введите пароль!',
                             },
                         ]}>
-                        <Input.Password size="large" />
+                        <Input.Password size="large" placeholder="Введите пароль"/>
                     </Form.Item>
                     <Form.Item>
                         <Button
