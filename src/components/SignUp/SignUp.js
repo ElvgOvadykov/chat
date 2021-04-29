@@ -8,7 +8,7 @@ import './SignUp.scss';
 const SignUp = () => {
     const history = useHistory();
     const [form] = Form.useForm();
-    const success = true;
+    const success = false;
 
     const renderSignUpForm = () => {
         return(

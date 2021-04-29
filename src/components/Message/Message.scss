@@ -1,0 +1,41 @@
+@import '../../Styles/variables';
+
+.message{
+    display: flex;
+    max-width: 440px;
+
+    &__avatar{
+        align-self: flex-end;
+        img{
+            border-radius: 50px;
+            height: 35px;
+            width: 35px;
+            margin-right: 15px;
+            margin-bottom: 20px;
+        }
+    }
+
+    &__content{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    &__bubble{
+        padding: 15px;
+        background: $blue;
+        box-shadow: 0px 5px 5px rgba(54, 116, 255, 0.196733);
+        border-radius: 12px 12px 12px 0px;
+        margin-bottom: 8px;
+    }
+
+    &__text{
+        color: #fff;
+        line-height: 20px;
+    }
+
+    &__date{
+        font-size: 12px;
+        opacity: 0.5;
+    }
+}
