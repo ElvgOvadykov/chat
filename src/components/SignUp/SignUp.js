@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
+import { InfoCircleTwoTone } from '@ant-design/icons';
 import { useHistory } from "react-router-dom";
 
 import './SignUp.scss';
@@ -7,11 +8,10 @@ import './SignUp.scss';
 const SignUp = () => {
     const history = useHistory();
     const [form] = Form.useForm();
+    const success = true;
 
-    return (
-        <div className="sign-up">
-            <h2>Регистрация</h2>
-            <p>Для входа в чат, вам нужно зарегистрироваться</p>
+    const renderSignUpForm = () => {
+        return(
             <div className="sign-up__form">
                 <Form form={form}>
                     <Form.Item
@@ -95,6 +95,24 @@ const SignUp = () => {
                     </Form.Item>
                 </Form>
             </div>
+        )
+    }
+
+    const renderConfirmEmail = () => {
+        return(
+            <div className="sign-up__form sign-up__form__success">
+                <InfoCircleTwoTone />
+                <h2>Подтвердите свой аккаунт</h2>
+                <p>На Вашу почту отправлено письмо с ссылкой на подтверждение аккаунта.</p>
+            </div>
+        )
+    }
+
+    return(
+        <div className="sign-up">
+            <h2>Регистрация</h2>
+            <p>Для входа в чат, вам нужно зарегистрироваться</p>
+            {success ? renderConfirmEmail() : renderSignUpForm()}
         </div>
     )
 }
