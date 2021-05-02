@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Input, Button } from 'antd';
 import { InfoCircleTwoTone } from '@ant-design/icons';
 import { useHistory } from "react-router-dom";
+import { withFormik } from "formik";
 
 import './SignUp.scss';
 

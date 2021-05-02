@@ -1,8 +1,11 @@
 @import '../../Styles/variables';
+@import '../../Styles/index.scss';
 
 .message{
+    $self: &;
+
     display: flex;
-    max-width: 440px;
+    margin-bottom: 15px;
 
     &__avatar{
         align-self: flex-end;
@@ -19,6 +22,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        max-width: 400px;
     }
 
     &__bubble{
@@ -27,15 +31,70 @@
         box-shadow: 0px 5px 5px rgba(54, 116, 255, 0.196733);
         border-radius: 12px 12px 12px 0px;
         margin-bottom: 8px;
+        width: 100%;
     }
 
     &__text{
         color: #fff;
         line-height: 20px;
+        margin-bottom: 0px;
     }
 
     &__date{
         font-size: 12px;
         opacity: 0.5;
+    }
+
+    &__check{
+        align-self: flex-end;
+        margin-bottom: 20px;
+        margin-right: 10px;
+    }
+
+    &__attachments{
+        display: flex;
+        margin-top: 15px;
+        width: 100%;
+        overflow-x: scroll;
+        @include no-scroll-bar();
+
+        &-item{
+            &:not(:last-of-type) {
+                margin-right: 5px;
+              }
+
+            img{
+                width: 45px;
+                height: 45px;
+                border-radius: 8px;
+            }
+        }
+    }
+
+    &-isme{
+        display: flex;
+        flex-direction: row-reverse;
+
+        #{$self}__avatar{
+            img{
+                margin-right: 0px;
+                margin-left: 15px;
+            }
+        }
+
+        #{$self}__bubble{
+            background-color: #fff;
+            border: 1px solid #ececec;
+            box-shadow: 0px 4px 4px rgba(0,0,0,0.02204444);
+            border-radius: 12px 12px 0 12px;
+            
+            #{$self}__text{
+                color: #000;
+            }
+        }
+
+        #{$self}__date{
+            align-self: flex-end;
+        }
     }
 }

@@ -1,4 +1,3 @@
-@import '~reset-css';
 @import '~antd/dist/antd.css';
 
 .wrapper {
@@ -11,3 +10,21 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  @mixin no-scroll-bar() {
+    &::-webkit-scrollbar {
+      height: 0;
+      width: 0;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      height: 0;
+      width: 0;
+    }
+  
+    &::-webkit-scrollbar-track {
+      height: 0;
+      width: 0;
+    }
+  }  
+  
