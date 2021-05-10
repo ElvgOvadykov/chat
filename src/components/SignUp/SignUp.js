@@ -1,106 +1,127 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
-import { InfoCircleTwoTone } from '@ant-design/icons';
+import { InfoCircleTwoTone, MailTwoTone } from '@ant-design/icons';
 import { useHistory } from "react-router-dom";
-import { withFormik } from "formik";
+import { Formik } from "formik";
 
+import { validationRules } from './validationRules';
 import './SignUp.scss';
 
 const SignUp = () => {
     const history = useHistory();
-    const [form] = Form.useForm();
-    const success = false;
+    let success = false;
+
+    const initialValues = {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: ""
+    }
 
     const renderSignUpForm = () => {
-        return(
-            <div className="sign-up__form">
-                <Form form={form}>
-                    <Form.Item
-                        name="firstname"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Пожалуйста введите Имя!',
-                            },
-                        ]}>
-                        <Input size="large" placeholder="Введите имя" />
-                    </Form.Item>
-                    <Form.Item
-                        name="lastname"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Пожалуйста введите фамилию!',
-                            },
-                        ]}>
-                        <Input size="large" placeholder="Введите фамилию" />
-                    </Form.Item>
-                    <Form.Item
-                        name="email"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Пожалуйста введите почту!',
-                            },
-                            {
-                                type: 'email',
-                                message: 'Недействительный адрес электронной почты!',
-                            },
-                        ]}>
-                        <Input size="large" placeholder="Введите почту" />
-                    </Form.Item>
-                    <Form.Item
-                        name="password"
-                        hasFeedback
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Пожалуйста введите пароль!',
-                            },
-                        ]}>
-                        <Input.Password size="large" placeholder="Введите пароль" />
-                    </Form.Item>
-                    <Form.Item
-                        name="passwordCheck"
-                        dependencies={['password']}
-                        hasFeedback
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Пожалуйста подтвердите пароль!',
-                            },
-                            ({ getFieldValue }) => ({
-                                validator(_, value) {
-                                    if (!value || getFieldValue('password') === value) {
-                                        return Promise.resolve();
+        return (
+            <Formik
+                onSubmit={(data) => {
+                    alert(data);
+                    success = true;
+                }}
+                initialValues={initialValues}
+                validationSchema={validationRules}>
+                {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
+                    <div className="sign-up__form">
+                        <Form>
+                            <Form.Item
+                                validateStatus={
+                                    !touched.firstName ? "" : errors.firstName ? "error" : "success"
+                                }
+                                hasFeedback>
+                                <Input
+                                    size="large"
+                                    placeholder="Введите имя"
+                                    value={values.firstName}
+                                    name="firstName"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur} />
+                            </Form.Item>
+                            <Form.Item
+                                validateStatus={
+                                    !touched.lastName ? "" : errors.lastName ? "error" : "success"
+                                }
+                                hasFeedback>
+                                <Input
+                                    size="large"
+                                    placeholder="Введите фамилию"
+                                    value={values.lastName}
+                                    name="lastName"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur} />
+                            </Form.Item>
+                            <Form.Item
+                                validateStatus={
+                                    !touched.email ? "" : errors.email ? "error" : "success"
+                                }
+                                hasFeedback>
+                                <Input
+                                    prefix={
+                                        <MailTwoTone />
                                     }
-                                    return Promise.reject(new Error('Пароли не совпадают!'));
-                                },
-                            }),
-                        ]}>
-                        <Input.Password size="large" placeholder="Подтвердите пароль" />
-                    </Form.Item>
-                    <Form.Item>
-                        <Button
-                            type="primary"
-                            htmlType="submit"
-                            size="large"
-                            block>
-                            Зарегистрироваться
+                                    size="large"
+                                    placeholder="Введите почту"
+                                    value={values.email}
+                                    name="email"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur} />
+                            </Form.Item>
+                            <Form.Item
+                                validateStatus={
+                                    !touched.password ? "" : errors.password ? "error" : "success"
+                                }
+                                hasFeedback>
+                                <Input.Password
+                                    size="large"
+                                    placeholder="Введите пароль"
+                                    value={values.password}
+                                    name="password"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur} />
+                            </Form.Item>
+                            <Form.Item
+                                validateStatus={
+                                    !touched.confirmPassword ? "" : errors.confirmPassword ? "error" : "success"
+                                }
+                                hasFeedback>
+                                <Input.Password
+                                    size="large"
+                                    placeholder="Подтвердите пароль"
+                                    value={values.confirmPassword}
+                                    name="confirmPassword"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur} />
+                            </Form.Item>
+                            <Form.Item>
+                                <Button
+                                    type="primary"
+                                    htmlType="submit"
+                                    size="large"
+                                    block>
+                                    Зарегистрироваться
                         </Button>
-                    </Form.Item>
-                    <Form.Item style={{ marginBottom: 0 }}>
-                        <Button type="link" onClick={() => history.push("/login")}>
-                            Ввойти в аккаунт
+                            </Form.Item>
+                            <Form.Item style={{ marginBottom: 0 }}>
+                                <Button type="link" onClick={() => history.push("/login")}>
+                                    Ввойти в аккаунт
                         </Button>
-                    </Form.Item>
-                </Form>
-            </div>
+                            </Form.Item>
+                        </Form>
+                    </div>
+                )}
+            </Formik>
         )
     }
 
     const renderConfirmEmail = () => {
-        return(
+        return (
             <div className="sign-up__form sign-up__form__success">
                 <InfoCircleTwoTone />
                 <h2>Подтвердите свой аккаунт</h2>
@@ -109,7 +130,7 @@ const SignUp = () => {
         )
     }
 
-    return(
+    return (
         <div className="sign-up">
             <h2>Регистрация</h2>
             <p>Для входа в чат, вам нужно зарегистрироваться</p>
